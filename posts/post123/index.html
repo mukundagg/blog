@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+<link rel="icon" type="image/ico" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="//localhost:1313/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="//localhost:1313/apple-touch-icon.png">
+
+<meta name="description" content="An LSM Tree overview and Java implementation."/>
+
+
+<meta name="fediverse:creator" content="@username@instance.url">
+
+
+<title>
+    
+    Log-Structured Merge Tree | Mukund&#39;s Blog
+    
+</title>
+
+<link rel="canonical" href="//localhost:1313/posts/post123/"/>
+
+<meta property="og:url" content="//localhost:1313/posts/post123/">
+  <meta property="og:site_name" content="Mukund&#39;s Blog">
+  <meta property="og:title" content="Log-Structured Merge Tree">
+  <meta property="og:description" content="An LSM Tree overview and Java implementation.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-11-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-11-12T00:00:00+00:00">
+    <meta property="article:tag" content="Database">
+    <meta property="article:tag" content="Java">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.c331fb2e28e3424112942e1a97d26217094a70be37369266be1a3f3d6bfc1861.css" media="all">
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="auto">
+
+  <div class="content">
+    <header>
+      
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="//localhost:1313/">Mukund&#39;s Blog</a>
+    </h1>
+
+    <div class="header-menu">
+        
+
+        
+        
+
+        <p
+            class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+
+        <p
+            class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+
+        <p
+            class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+    </header>
+
+    <main class="main">
+      
+
+
+
+
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/post123/">Log-Structured Merge Tree</a></div>
+
+
+<div  class="autonumber" >
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">Log-Structured Merge Tree</h1>
+        <p class="single-summary">An LSM Tree overview and Java implementation.</p>
+        
+        <div class="single-subsummary">
+          
+            <img src="/avatar.jpeg" alt="Author Avatar" />
+          
+          <div>
+            
+            <p class="author">Mukund Aggarwal </p>
+            
+            <p class="single-date">
+              <time datetime="2023-11-12T00:00:00&#43;00:00">November 12, 2023</time>
+              &nbsp; · &nbsp;4 min read
+            </p>
+          </div>
+        </div>
+        
+    </header>
+      <aside class="toc">
+        <p><strong>Table of contents</strong></p>
+        <nav id="TableOfContents"></nav>
+      </aside>
+    
+    <div class="single-content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis erat magna. Donec nibh massa, bibendum luctus urna sit amet, molestie aliquam ligula. Phasellus tempus mattis ipsum a egestas. Duis ullamcorper rutrum efficitur. Pellentesque bibendum elementum leo at elementum. In sit amet ante molestie, feugiat justo non, mollis eros. Nullam commodo molestie eleifend. Suspendisse turpis turpis, euismod vitae quam non, porta vehicula lorem. Proin luctus, dui id pellentesque facilisis, elit turpis molestie nisl, et ultricies lectus sem eu turpis. Sed risus risus, fringilla eu ligula vel, bibendum viverra tortor. Suspendisse interdum tincidunt mi, sed gravida eros dapibus vitae. Pellentesque sollicitudin blandit tortor molestie aliquet. Pellentesque fringilla tellus in turpis porttitor faucibus. Mauris vitae felis nisl.</p>
+<p>Nulla facilisi. Etiam et nisl tortor. Suspendisse molestie diam ut nunc porttitor auctor. Vestibulum venenatis quis metus tempor fermentum. Aliquam ac dictum nisi, vel blandit turpis. Etiam gravida massa luctus tortor pretium suscipit. Etiam ante libero, efficitur quis est in, auctor tempor leo.</p>
+<p>Cras non tortor volutpat, condimentum ipsum nec, euismod nulla. Morbi sollicitudin tristique orci, sed mattis enim efficitur vel. Nulla sit amet tortor facilisis, consectetur ante a, viverra ex. Donec eu odio nisi. Aenean in enim sed nibh mattis interdum. Etiam mollis id nisi non cursus. Vestibulum at auctor lacus. Praesent at neque nisi.</p>
+<p>Pellentesque sed felis faucibus, ultrices erat nec, egestas neque. Praesent nunc nisi, ornare viverra nulla eu, blandit aliquet nunc. Sed rutrum tempor sapien, in pellentesque arcu tincidunt id. Integer gravida pharetra odio a volutpat. Donec id tellus elementum, efficitur justo eget, fringilla orci. Nullam nisi felis, sollicitudin a vehicula nec, cursus vel tortor. Maecenas tincidunt volutpat ex at euismod. Sed eget ligula sed nunc auctor sodales. Integer accumsan suscipit tempus. Aliquam vehicula lectus sem, vitae lacinia mi sagittis vel.</p>
+<p>Etiam purus nisi, blandit eu mattis eu, lobortis at tortor. Mauris blandit imperdiet quam, sit amet semper ligula tempor ac. In at libero purus. Ut sollicitudin felis id odio venenatis pellentesque. Ut non purus odio. Sed semper sagittis nunc, non fermentum tortor sagittis ut. Morbi in eleifend eros, nec sodales orci. Vivamus rhoncus, ligula in convallis maximus, odio urna tristique purus, vitae finibus velit nibh eget arcu.</p>
+<p>Suspendisse nec mauris justo. Nam efficitur leo ac diam tristique porttitor. Donec finibus felis et ante facilisis faucibus. Proin ut sollicitudin magna, ac condimentum ligula. Sed est risus, congue eget tellus fermentum, dignissim lobortis quam. Sed est purus, volutpat non condimentum in, porttitor id dui. Sed rutrum leo et iaculis vehicula. Fusce malesuada, velit et porttitor tempus, purus sem scelerisque est, non consequat elit neque id augue. Vivamus sed nisl non lectus laoreet interdum. Duis posuere efficitur sagittis.</p>
+<p>Etiam sapien lorem, sollicitudin ut velit vel, condimentum pharetra enim. Vestibulum facilisis elit nec augue blandit ornare. Donec id diam erat. Ut nec nunc vel ligula auctor ultricies. Ut scelerisque ac leo nec fermentum. Vivamus sagittis felis nisi, at bibendum eros auctor non. Sed id nulla id mi euismod tincidunt eu vitae ante. Sed imperdiet est vitae tortor vulputate ultricies. Aenean et libero et nulla tristique sollicitudin.</p>
+<p>Donec dapibus sit amet erat et pretium. Donec tincidunt consequat urna ut tempus. Nulla tincidunt suscipit urna. Suspendisse ac felis at augue luctus vulputate. Phasellus tempor, tellus dapibus tempus sodales, metus sapien mollis nulla, vel maximus nisi arcu sit amet nibh. Ut vel facilisis neque, sit amet blandit nunc. Ut vulputate ut leo quis condimentum. In ac venenatis risus. Aenean facilisis quis lorem venenatis mattis. Integer vitae convallis magna. Quisque vulputate, dui ac efficitur auctor, nibh diam fringilla turpis, quis vulputate diam augue viverra risus. Vestibulum id cursus enim, vel tempus leo.</p>
+<p>Donec a tortor vitae tellus ultrices ultricies. Phasellus condimentum faucibus vehicula. Nunc facilisis lacinia maximus. Duis posuere tortor nunc, sit amet dapibus justo convallis ac. Ut maximus nisl eu orci euismod porttitor non quis nibh. Etiam aliquet dui quis sapien volutpat, id posuere velit ornare. Nulla lacinia tincidunt massa. In in ante sapien. Sed ut bibendum nisi, id tempor enim. Pellentesque nec urna nunc. Fusce pretium, nisl id auctor ultrices, libero justo condimentum sem, sed convallis mauris ex vitae ligula. Etiam orci nisl, ultricies in nunc ut, pretium viverra felis. Mauris et metus commodo, luctus massa vestibulum, commodo ipsum. Vivamus cursus dui ac nisl fermentum tincidunt. Maecenas non justo arcu. Mauris non mattis lorem.</p>
+<p>Cras finibus gravida tellus sed dictum. Phasellus sem ipsum, lacinia nec aliquet ac, rutrum id ante. Mauris non venenatis magna. Aliquam elementum lobortis ipsum, porttitor mollis justo iaculis et. Praesent faucibus felis nec pretium finibus. Nunc posuere orci odio, ac tristique metus facilisis vitae. Pellentesque tincidunt pulvinar sem, ut aliquet ligula faucibus pretium. Sed feugiat vestibulum ipsum. Morbi ligula arcu, rutrum eu placerat quis, euismod in eros. Nulla viverra mauris quis porta sagittis. Etiam sed tortor viverra, faucibus urna vitae, blandit ligula. Aenean mattis, justo nec malesuada malesuada, erat elit aliquet purus, sagittis placerat lacus lectus placerat nibh. Nullam ornare nibh eget urna euismod, sed facilisis leo luctus.</p>
+
+    </div>
+  </article>
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+    </main>
+  </div>
+
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+  </footer>
+
+  
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  
+<script defer 
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+  
+</body>
+
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
+</html>
