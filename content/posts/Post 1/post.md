@@ -1,9 +1,9 @@
 ---
-title: "Log-Structured Merge Tree"
-author: "Francesco"
+title: "RL with JAX: An Introduction"
+author: "Mukund Aggarwal"
 authorAvatarPath: "/blog/avatar.png"
 date: "2023-11-12"
-summary: "An LSM Tree overview and Java implementation."
+summary: "Establishing groundwork & introducing RL."
 description: "An LSM Tree overview and Java implementation."
 toc: true
 readTime: true
@@ -14,5 +14,8 @@ showTags: false
 hideBackToTop: false
 fediverse: "@username@instance.url"
 ---
+
+## Testing
+### Okay
 
 hello

@@ -16,6 +16,9 @@ tag = 'tags'
 [params]
 # Meta description
 description = "The ML Blog"
+showFooter = true
+footerContent = "&copy; Mukund Aggarwal. All rights reserved. Work licensed under CC BY-NC-SA."
+favicon = "favicon.png"
 
 # Appearance settings
 theme = 'auto'
@@ -25,9 +28,9 @@ hideHeader = false
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hi!'
 homeIntroContent = """
-I'm a SWE. Fiddling around with models and working on engaging ideas 
-excites me. This blog is my journal, essaying sketches focused, *but not limited* to, 
-Reinforcement Learning, Bayesian Learning, and Probablistic Numerics.
+I'm a SWE. Re-engineering blueprints and working on engaging ideas 
+excites me. This blog is my journal, essaying sketches focused on, *but not limited* to, 
+Reinforcement Learning, Bayesian Learning, and Probabilistic Numerics.
 """
 
 # Collection to display on home
@@ -57,11 +60,11 @@ url = "https://github.com/mukundagg"
 # Main menu pages
 [[params.menu]]
 name = "home"
-url = "/"
+url = "/blog/"
 
 [[params.menu]]
 name = "posts"
-url = "/posts"
+url = "/blog/posts"
 
 [[params.menu]]
 name = "about"
