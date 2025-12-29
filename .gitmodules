@@ -1,3 +1,5 @@
 [submodule "themes/typo"]
 	path = themes/typo
 	url = https://github.com/tomfran/typo.git
+[submodule "bar1"]
+	branch = master
