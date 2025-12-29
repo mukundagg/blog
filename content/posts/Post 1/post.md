@@ -1,7 +1,7 @@
 ---
 title: "RL with JAX: An Introduction"
 author: "Mukund Aggarwal"
-authorAvatarPath: "/blog/avatar.png"
+authorAvatarPath: "/blog/avatar4.png"
 date: "2023-11-12"
 summary: "Establishing groundwork & introducing RL."
 description: "An LSM Tree overview and Java implementation."
